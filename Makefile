@@ -22,7 +22,7 @@ push_ll_notify:
 	# Note - I am NOT doing --rejoin in order to keep hacore commits clean
 	# but it takes FOREVER. Add back if ll_notify is not added to core.
 	cd ../../.. ; \
-	git subtree split --prefix homeassistant/components/ll_notify --annotate '(split) ' --branch ll_notify_subtree2 ; \
+	git subtree split --prefix homeassistant/components/ll_notify --annotate '(split) ' --branch ll_notify_subtree3 ; \
 	git push -f ll_notify_origin ll_notify_subtree3:master
 
 clean_python:
