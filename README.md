@@ -1,32 +1,23 @@
-# Lovelace Notify / ll_notify
+# Lovelace Notify (ll_notify)
 
 ll_notify is a Home Assistant component that allows you to easily add notifications and alerts to a Lovelace dashboard.
-
-ll_notify is basically thin wrapper on top of the Javascript framework [AlertifyJS](https://alertifyjs.com/). It has a backend (python) component, auto-loads to the front-end, and has a JS wrapper in the Lovlace user interface. You can trigger a notification by calling a backend service. (eg: `call-service: ll_notify/success`)
 
 ![screen recording](screenshot.gif)
 
 ## Status: Alpha
 
-This is still in development mode. I'm trying to decide if I should do a PR to HACore (to become a builtin component) or if it should be a custom component.
+ll_notify is currently in the pipeline to get added as a built-in integration to Home Assistant ([PR](https://github.com/home-assistant/core/pull/46260)). Unfortunately there are over 300 PRs and I don't know when, or if, this will be accepted.
 
-As a custom component, it's probably pretty close to prime-time. But for a builtin, it would require docs, code cleanup, more robust exception handling, and testing.
+For now it is best to use it as a custom component, as described below.
 
-## Installation
+## Install
 
 ```bash
 cd config/custom_components
 git clone git@github.com:rr326/ha_ll_notify.git ll_notify
-echo "Please restart Home Assistant"
 ```
 
-### Test it
-
-In your Home Assistant Dashboard, got to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
-
-If not, in your dashboard open your browser [developer tools](https://balsamiq.com/support/faqs/browserconsole/) window. At the top of the window you should see something like, 'll_notify: Successfully loaded.' If not, make sure you installed it properly. Check your HA logs. Or file an issue here.
-
-## Config
+## Configure
 
 ```yaml
 # config/configuration.yaml
@@ -37,7 +28,16 @@ ll_notify:  # required
       position: bottom-right
 ```
 
-### Dashboard
+After installing and configuring, restart Home Assistant.
+
+## Test
+
+In your Home Assistant Dashboard, got to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
+
+If not, in your dashboard open your browser [developer tools](https://balsamiq.com/support/faqs/browserconsole/) window. At the top of the window you should see something like, 'll_notify: Successfully loaded.' If not, make sure you installed it properly. Check your HA logs. Or file an issue here.
+
+## Example - Using in a Dashboard
+
 
 ```yaml
 # In a dashboard
@@ -77,10 +77,9 @@ ll_notify:  # required
                     field1: val1
 ```
 
-### Elsewhere
-`ll_notify` exposes several services and you can trigger notifications wherever you like. See below.
-
 ## Exposed services
+
+`ll_notify` exposes several services and you can trigger notifications wherever you like. 
 
 DOMAIN: `ll_notify`
 
@@ -99,8 +98,8 @@ DOMAIN: `ll_notify`
 
 Alertify uses callbacks after a notification is dismissed, or after a confirm dialog is accepted or rejected. ll_notify instead implements 3 types of actions:
 
-1. `call_service` - Call a hass service
-2. `fire_event` - Fire a hass event
+1. `call_service` - Call a Home Assistant service
+2. `fire_event` - Fire a HomeAssistant event
 3. `js_fire_event` - Fire a Javascript event, solely in the browser.
 
 You can trigger one action, or multiple actions. See the example dashboard above.
