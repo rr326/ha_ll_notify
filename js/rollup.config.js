@@ -4,6 +4,7 @@ import json from "@rollup/plugin-json"
 import commonjs from "@rollup/plugin-commonjs"
 import postcss from "rollup-plugin-postcss"
 import { terser } from "rollup-plugin-terser" // eslint-disable-line no-unused-vars
+import license from "rollup-plugin-license"
 
 const dev = process.env.ROLLUP_WATCH // eslint-disable-line no-undef
 
@@ -24,6 +25,10 @@ export default {
     format: "es",
   },
   plugins: [
+    license({
+      banner:
+        "@license: Includes: alertifyjs - Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com)",
+    }),
     resolve({
       preferBuiltins: true,
     }),
@@ -36,6 +41,13 @@ export default {
       transformMixedEsModules: true,
     }),
     dev && serve(servopts),
-    !dev && terser(),
+    !dev &&
+      terser({
+        output: {
+          comments: function (node, comment) {
+            return /@license/i.test(comment.value)
+          },
+        },
+      }),
   ],
 }
