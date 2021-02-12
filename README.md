@@ -117,3 +117,11 @@ Alertify's [notifications](https://alertifyjs.com/notifier.html) are implemented
 Aleritify's [alerts](https://alertifyjs.com/alert.html) and [confirm dialogs](https://alertifyjs.com/confirm.html) are also implemented. You can set all the properties by sending key:value pairs in `service_data`, but most of the methods are not implemented.
 
 Alertify's [prompt](https://alertifyjs.com/prompt.html) is not implemented at all.
+
+## AppDaemon
+
+If you used AppDaemon, check out my [AdPlus](https://github.com/rr326/adplus#ll_notify-helpers) helper functions. It makes adding a lovelace notification easy:
+
+```python
+self.ll_error('Whoops - your alarm failed to turn on. Better check it out!')
+```
