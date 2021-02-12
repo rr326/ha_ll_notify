@@ -4,17 +4,16 @@ ll_notify is a Home Assistant component that allows you to easily add notificati
 
 ![screen recording](screenshot.gif)
 
-## Status: Alpha
-
-ll_notify is currently in the pipeline to get added as a built-in integration to Home Assistant ([PR](https://github.com/home-assistant/core/pull/46260)). Unfortunately there are over 300 PRs and I don't know when, or if, this will be accepted.
-
-For now it is best to use it as a custom component, as described below.
-
 ## Install
+
+*Note - be sure to clone it into a directory named "ll_notify"!*
 
 ```bash
 cd config/custom_components
 git clone git@github.com:rr326/ha_ll_notify.git ll_notify
+
+# Double-check
+if [[  -d 'll_notify' ]]; then echo "Success" ; else echo "Error! Make sure the directory is called 'll_notify'" ; fi
 ```
 
 ## Configure
@@ -23,16 +22,18 @@ git clone git@github.com:rr326/ha_ll_notify.git ll_notify
 # config/configuration.yaml
 
 ll_notify:  # required
-  defaults: # optional. Full list here: https://alertifyjs.com/guide.html#defaults
+  defaults: # optional
     notifier:
       position: bottom-right
 ```
 
 After installing and configuring, restart Home Assistant.
 
+**Defaults** - Full list of defaults [here](https://alertifyjs.com/guide.html#defaults).
+
 ## Test
 
-In your Home Assistant Dashboard, got to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
+In your Home Assistant Dashboard, go to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
 
 If not, in your dashboard open your browser [developer tools](https://balsamiq.com/support/faqs/browserconsole/) window. At the top of the window you should see something like, 'll_notify: Successfully loaded.' If not, make sure you installed it properly. Check your HA logs. Or file an issue here.
 
@@ -77,22 +78,25 @@ If not, in your dashboard open your browser [developer tools](https://balsamiq.c
                     field1: val1
 ```
 
-## Exposed services
+## Services
 
 `ll_notify` exposes several services and you can trigger notifications wherever you like. 
 
-DOMAIN: `ll_notify`
+* `ll_notify.success`
+* `ll_notify.error`
+* `ll_notify.warning`
+* `ll_notify.dismiss_all`
 
-### Services
+These are very simple to use, as documented above. (`dismiss_all` requires no `service_data`.)
 
-* success
-* error
-* warning
-* message
-* notify
-* alert
-* confirm
-* dismiss_all
+Advanced
+
+* `ll_notify.message`
+* `ll_notify.notify`
+* `ll_notify.alert`
+* `ll_notify.confirm`
+
+These are just a bit more complicated. See **Actions** below, and read about the parameters on the [AlertifyJS website](https://alertifyjs.com/). ll_notify will simply pass through `service_data` to Alertify. 
 
 ## Actions / "callbacks"
 
@@ -112,4 +116,4 @@ Alertify's [notifications](https://alertifyjs.com/notifier.html) are implemented
 
 Aleritify's [alerts](https://alertifyjs.com/alert.html) and [confirm dialogs](https://alertifyjs.com/confirm.html) are also implemented. You can set all the properties by sending key:value pairs in `service_data`, but most of the methods are not implemented.
 
-Alertify's [prompt](https://alertifyjs.com/prompt.html) is not implemented at all. It is unclear that the benefit is worth the complications.
+Alertify's [prompt](https://alertifyjs.com/prompt.html) is not implemented at all.
