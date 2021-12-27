@@ -1,0 +1,6 @@
+{
+  "name": "Lovelace Notify",
+  "domain": "ll_notify",
+  "content_in_root": true,
+  "render_readme": true
+}
