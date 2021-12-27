@@ -6,8 +6,6 @@ ll_notify is a Home Assistant component that allows you to easily add notificati
 
 ## Install
 
-*See: [Adding *Custom repositories* to HACS](https://hacs.xyz/docs/faq/custom_repositories) documentation on hacs.xyz.*
-
 ### Install manually
 
 *Note - be sure to clone it into a directory named "ll_notify"!*
