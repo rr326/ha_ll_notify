@@ -6,6 +6,10 @@ ll_notify is a Home Assistant component that allows you to easily add notificati
 
 ## Install
 
+*See: [Adding *Custom repositories* to HACS](https://hacs.xyz/docs/faq/custom_repositories) documentation on hacs.xyz.*
+
+### Install manually
+
 *Note - be sure to clone it into a directory named "ll_notify"!*
 
 ```bash
@@ -15,6 +19,19 @@ git clone git@github.com:rr326/ha_ll_notify.git ll_notify
 # Double-check
 if [[  -d 'll_notify' ]]; then echo "Success" ; else echo "Error! Make sure the directory is called 'll_notify'" ; fi
 ```
+
+### Install with HACS
+
+1. Open **HACS**.
+2. Click "Integrations".
+2. Click on the 3 dots in the top right corner.
+3. Select "Custom repositories".
+4. Paste `https://github.com/rr326/ha_ll_notify` into the "Repository" field.
+5. Select `Integration` from the "Category" field.
+6. Click the "Add" button.
+7. Click the "+ Explore & download repositories".
+8. Search for "Lovelace Notify".
+9. Click the "Download this repository to HACS" button.
 
 ## Configure
 
