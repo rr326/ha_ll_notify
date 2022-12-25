@@ -50,6 +50,16 @@ After installing and configuring, restart Home Assistant.
 
 In your Home Assistant Dashboard, go to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
 
+In your Home Assistant Dashboard, go to Developer Tools > Services. Under service, select "ll_notify.success", then click "GO TO YAML MODE". In the code box (the one with line numbers), type:
+
+```yaml
+service: ll_notify.success
+data: { message: "test" }
+```
+
+Then click the "Call Service" button. If a notification appears on the screen, you are set.
+
+
 If not, in your dashboard open your browser [developer tools](https://balsamiq.com/support/faqs/browserconsole/) window. At the top of the window you should see something like, 'll_notify: Successfully loaded.' If not, make sure you installed it properly. Check your HA logs. Or file an issue here.
 
 ## Example - Using in a Dashboard
