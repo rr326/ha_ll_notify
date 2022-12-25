@@ -124,7 +124,7 @@ Advanced
 These are just a bit more complicated. See **Actions** below, and read about the parameters on the [AlertifyJS website](https://alertifyjs.com/). ll_notify will simply pass through `service_data` to Alertify. 
 
 ## Automations
-You can send notifications in an automation. Click "ADD ACTION" and select "Call service". As Service, select one of the services mentioned above. As Service data, type something like "message: Test success". Finally, click the three buttons in the top right corner and select "Run" to see the result. 
+You can send notifications in an automation. Click "ADD ACTION" and select "Call service". As Service, select one of the services mentioned above. As Service data, type something like "message: Test success". Finally, save and click the three buttons in the top right corner, then select "Run" to see the result. 
 
 ## Actions / "callbacks"
 
