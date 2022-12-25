@@ -48,8 +48,6 @@ After installing and configuring, restart Home Assistant.
 
 ## Test
 
-In your Home Assistant Dashboard, go to Developer Tools > Services. Under services, select "ll_notify.success". Click "Fill Example Data" from the box below. Then click the "Call Service" button. If a notification appears on the screen, you are set.
-
 In your Home Assistant Dashboard, go to Developer Tools > Services. Under service, select "ll_notify.success", then click "GO TO YAML MODE". In the code box (the one with line numbers), type:
 
 ```yaml
@@ -63,20 +61,22 @@ Then click the "Call Service" button. If a notification appears on the screen, y
 If not, in your dashboard open your browser [developer tools](https://balsamiq.com/support/faqs/browserconsole/) window. At the top of the window you should see something like, 'll_notify: Successfully loaded.' If not, make sure you installed it properly. Check your HA logs. Or file an issue here.
 
 ## Example - Using in a Dashboard
-
+In one of your Dashboards, click the three dots in the top right corner and select "Edit Dashboard". Click "ADD CARD" and select a Button card. Then in the card config, click "SHOW CODE EDITOR" and paste the following code:
 
 ```yaml
-# In a dashboard
+name: Success
+type: button
+tap_action:
+  action: call-service
+  service: ll_notify.success
+  service_data:
+    message: Test success
+    wait: 2
+```
 
-# Simple
-  - type: button
-    name: Success
-    tap_action:
-        action: call-service
-        service: ll_notify.success
-        service_data:
-            message: "Test success"
-            wait: 2
+Click "SAVE" and then click the new button to test it. Note that the alert won't be visible on the config page, you have to have a Dashboard open in another window to be able to see it. Another example: 
+
+```yaml
 
 # Complicated - with "callbacks"
   - type: button
