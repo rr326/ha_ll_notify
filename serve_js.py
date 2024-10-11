@@ -5,6 +5,7 @@ This trick is taken from here:
 https://github.com/thomasloven/hass-browser_mod/blob/master/custom_components/browser_mod/mod_view.py
 """
 import logging
+import asyncio
 
 from aiohttp import web
 
@@ -39,10 +40,19 @@ class ModView(HomeAssistantView):
     async def get(self, request):
         """Get."""
         try:
-            filecontent = SCRIPT_PATH.read_text(encoding="utf-8", errors="ignore")
+            # filecontent = SCRIPT_PATH.read_text(encoding="utf-8", errors="ignore")
+
+            loop = asyncio.get_running_loop()
+            filecontent = await loop.run_in_executor(
+                None, lambda: SCRIPT_PATH.read_text(encoding="utf-8", errors="ignore")
+            )
         except (FileNotFoundError, PermissionError) as err:
             _LOGGER.error("Unable to read %s. Err: %s", str(SCRIPT_PATH), str(err))
             filecontent = ""
+            return 
+        except Exception as e:
+            _LOGGER.error(f"Unexpected error serving ll_notify.js. err:{e}")
+            return
 
         return web.Response(
             body=filecontent, content_type="text/javascript", charset="utf-8"
