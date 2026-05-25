@@ -14,7 +14,6 @@ import { version } from "../package.json"
 window.alertify = alertify // Needed as a window global
 
 let hassConn = null
-console.log(`ll_notify: loading... v${version}`)
 
 /**
  * Initialize alertify & websocket listeners
