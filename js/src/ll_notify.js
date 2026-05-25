@@ -10,10 +10,11 @@ import * as debug from "./debug"
 import { getHassConn } from "./getHassConn"
 
 import alertify from "alertifyjs"
+import { version } from "../package.json"
 window.alertify = alertify // Needed as a window global
 
 let hassConn = null
-console.log("ll_notify: loading...")
+console.log(`ll_notify: loading... v${version}`)
 
 /**
  * Initialize alertify & websocket listeners
@@ -40,8 +41,8 @@ getHassConn()
     subscribePingEvent(hassConn)
   })
   .then(() => {
-    console.log("ll_notify: Successfully loaded.")
+    console.log(`ll_notify: Successfully loaded. v${version}`)
     // debugging
-    debug.set_globals()
+    debug.set_globals(hassConn)
     // debug.do_5sec_test();
   })

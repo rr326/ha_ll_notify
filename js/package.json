@@ -1,6 +1,6 @@
 {
   "name": "ll_notify",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Home Assistant ll_notify component front end",
   "keywords": [
     "home-assistant",
