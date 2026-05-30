@@ -4,11 +4,10 @@ Automatically insert `ll_notify.js` into the Lovelace frontend.
 This trick is taken from here:
 https://github.com/thomasloven/hass-browser_mod/blob/master/custom_components/browser_mod/mod_view.py
 """
-import logging
 import asyncio
+import logging
 
 from aiohttp import web
-
 from homeassistant.components.http import HomeAssistantView
 
 from .const import DATA_EXTRA_MODULE_URL, FRONTEND_SCRIPT_URL, SCRIPT_PATH, VIEW_NAME
@@ -49,7 +48,7 @@ class ModView(HomeAssistantView):
         except (FileNotFoundError, PermissionError) as err:
             _LOGGER.error("Unable to read %s. Err: %s", str(SCRIPT_PATH), str(err))
             filecontent = ""
-            return 
+            return
         except Exception as e:
             _LOGGER.error(f"Unexpected error serving ll_notify.js. err:{e}")
             return
